@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Listado</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center m-3">Lista de productos</h1>
+        <br/>
+        <a th:href="@{/add}" class="btn btn-warning m-3"> Nuevo producto</a>
+        <br/>
+        <br/>
+        <table class="table table-responsive table-sm table-dark table-striped table-bordered table-hover mt-2">
+            <thead>
+            <tr class="info">
+                <th>ID</th>
+                <th>NOMBRE</th>
+                <th>PRECIO</th>
+                <th>STOCK</th>
+                <th>OPCIONES</th>
+            </tr>
+            </thead>
+            <tbody>
+                <th:block th:each="p : ${producto}">
+                    <tr>
+                        <td th:text="${p.id}"></td>
+                        <td th:text="${p.nombre}"></td>
+                        <td th:text="${p.precio}"></td>
+                        <td th:text="${p.stock}"></td>
+                        <td>
+                            <a th:href="@{/editar/{id}(id=${p.id})}"class="btn btn-success">Editar</a>
+                            <a href="#" class="btn btn-danger" th:attr="data-id=${p.id}" th:onclick="eliminar(this.getAttribute('data-id'))">Eliminar</a>
+                        </td>
+                    </tr>
+                </th:block>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        function eliminar (id){
+
+            if(!confirm('¿Está seguro que desea eliminar ' + id + '?')) return;
+
+             $.ajax({
+                   type: "POST",
+                   url: "/eliminar",
+                   data: {
+                       id: id
+                   },
+                   success: function(response){
+                       window.location.href = "/";
+                   }
+             });
+        }
+    </script>
+</body>
+</html>

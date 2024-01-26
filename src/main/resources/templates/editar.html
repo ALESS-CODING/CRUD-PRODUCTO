@@ -1,0 +1,47 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Editar</title>
+</head>
+<body>
+<div class="container">
+    <h1 class="text-center m-3">Editar Producto</h1>
+    <div style="margin:auto;">
+        <div class="row d-flex justify-content-center mx-auto">
+            <div class="col-md-6 col-xs-12 div-style">
+                <form method="post" th:action="@{/actualizar}" th:object="${producto}">
+                    <table>
+                        <tr>
+                            <td><input th:field="*{id}" type="hidden" id="id" name="id" class="form-control text-box formFieldError" /></td>
+                        </tr>
+                        <tr>
+                            <td><label for="nombre">Nombre Producto: </label></td>
+                            <td><input th:field="*{nombre}" type="text" id="nombre" name="nombre" class="form-control text-box formFieldError" /></td>
+                            <td><span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></span></td>
+                        </tr>
+                        <tr>
+                            <td><label for="precio">Precio : </label></td>
+                            <td><input th:field="*{precio}" type="text" id="precio" name="precio" class="form-control text-box formFieldError"/></td>
+                            <td><span th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}"></span></td>
+                        </tr>
+                        <tr>
+                            <td><label for="stock">Stock : </label></td>
+                            <td><input th:field="*{stock}" type="text" id="stock" name="stock" class="form-control text-box formFieldError"/></td>
+                            <td><span th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}"></span></td>
+                        </tr>
+                        <tr>
+                            <td colspan="1">
+                                <input type="submit" value="Actualizar" class="btn btn-primary button-submit"/>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

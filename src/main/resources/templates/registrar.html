@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Registrar</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center m-3">Registrar Producto</h1>
+
+        <div class="row d-flex justify-content-center mx-auto">
+            <div class="col-md-6 col-xs-12 div-style">
+                <form method="post" action="/grabar" th:object="${producto}" >
+                    <table>
+                        <tr>
+                            <td><label for="nombre">Nombre Producto: </label></td>
+                            <td><input type="text" id="nombre" name="nombre" class="form-control text-box formFieldError" /></td>
+                            <td><span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></span></td>
+                        </tr>
+                        <tr>
+                            <td><label for="precio">Precio : </label></td>
+                            <td><input type="number" id="precio" name="precio" value="0" class="form-control text-box formFieldError"/></td>
+                            <td><span th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}"></span></td>
+                        </tr>
+                        <tr>
+                            <td><label for="stock">Stock : </label></td>
+                            <td><input type="number" id="stock" name="stock" value="0" class="form-control text-box formFieldError"/></td>
+                            <td><span th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}"></span></td>
+                        </tr>
+                        <tr>
+                            <td colspan="1">
+                                <a href="/"  class="btn btn-warning">Volver</a>
+                                <input type="submit" value="Insertar" class="btn btn-primary button-submit"/>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
